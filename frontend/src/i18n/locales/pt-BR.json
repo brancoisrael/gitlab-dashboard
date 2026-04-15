@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "dependencies": "Dependências",
+    "search": "Busca",
+    "settings": "Configurações"
+  },
+  "header": {
+    "title": "GitLab Dashboard"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "noData": "Nenhum dado disponível. Execute a sincronização primeiro.",
+    "sync": "Sincronizar projetos",
+    "syncAutoStarted": "Sincronização iniciada. Os dados serão carregados automaticamente ao concluir.",
+    "syncSuccess": "Sincronização concluída com sucesso.",
+    "syncError": "Erro durante a sincronização. Tente novamente.",
+    "gruposSection": "Grupos",
+    "table": {
+      "nome": "Nome",
+      "url": "URL",
+      "criadoEm": "Criado em",
+      "ultimaAtividade": "Última atividade",
+      "download": "Baixar XLSX",
+      "results": "{{total}} projeto(s)",
+      "filteredResults": "{{filtrado}} de {{total}} projeto(s)",
+      "filterNome": "Filtrar por nome...",
+      "sheetName": "Projetos"
+    }
+  },
+  "dependencies": {
+    "title": "Dependências",
+    "syncSection": "Catalogar dependências",
+    "syncPlaceholder": "Ex: pom.xml, package.json",
+    "syncButton": "Catalogar",
+    "syncing": "Catalogando...",
+    "syncSuccess": "Catalogação de \"{{arquivo}}\" concluída.",
+    "syncError": "Erro ao catalogar \"{{arquivo}}\".",
+    "filtersSection": "Consultar dependências",
+    "filterArquivo": "Arquivo",
+    "filterArquivoPlaceholder": "Selecione um arquivo",
+    "filterTipo": "Tipo",
+    "filterTipoPlaceholder": "Todos",
+    "filterTipoProjeto": "Projeto",
+    "filterTipoDependencia": "Dependência",
+    "filterNome": "Nome",
+    "filterNomePlaceholder": "Buscar por nome...",
+    "filterPacote": "Pacote",
+    "filterPacotePlaceholder": "Ex: br.com",
+    "queryButton": "Consultar",
+    "noResults": "Nenhum resultado encontrado.",
+    "queryError": "Erro ao consultar dependências.",
+    "table": {
+      "project": "Projeto",
+      "dependency": "Dependência",
+      "dependencies": "Dependências",
+      "projects": "Projetos",
+      "version": "Versão",
+      "download": "Baixar XLSX",
+      "results": "{{grupos}} grupo(s) · {{itens}} item(ns)",
+      "sheetName": "Dependências"
+    },
+    "graph": {
+      "projects": "Projetos",
+      "dependencies": "Dependências"
+    }
+  },
+  "search": {
+    "title": "Busca de Conteúdo",
+    "searchSection": "Parâmetros da busca",
+    "extensao": "Extensão",
+    "extensaoPlaceholder": "Ex: .java, .ts, .py",
+    "texto": "Texto a buscar",
+    "textoPlaceholder": "Ex: HttpStatus.NOT_FOUND",
+    "searchButton": "Buscar",
+    "stopButton": "Parar",
+    "searching": "Buscando...",
+    "cancelled": "Busca cancelada.",
+    "searchSuccess": "Busca concluída — {{total}} projeto(s) com resultados.",
+    "searchError": "Erro ao realizar a busca. Tente novamente.",
+    "fetchError": "Erro ao obter resultados da busca.",
+    "noResults": "Nenhum arquivo encontrado com os critérios informados.",
+    "resultsSection": "Resultados",
+    "table": {
+      "results": "{{projetos}} projeto(s) · {{arquivos}} arquivo(s)",
+      "criteria": "Extensão: {{extensao}} · Texto: \"{{texto}}\"",
+      "projeto": "Projeto",
+      "arquivo": "Arquivo",
+      "url": "Link",
+      "openFile": "Abrir no GitLab",
+      "download": "Baixar XLSX",
+      "sheetName": "Busca"
+    }
+  },
+  "settings": {
+    "title": "Configurações",
+    "storage": {
+      "title": "Armazenamento",
+      "description": "Defina onde os arquivos Parquet serão persistidos. As alterações entram em vigor imediatamente sem reiniciar.",
+      "type": "Tipo de armazenamento",
+      "local": "Diretório local",
+      "s3": "S3 / MinIO",
+      "localPath": "Caminho do diretório",
+      "localPathPlaceholder": "/data/parquet",
+      "endpoint": "Endpoint",
+      "endpointPlaceholder": "http://localhost:9000",
+      "bucket": "Bucket",
+      "bucketPlaceholder": "gitlab-dashboard",
+      "region": "Região",
+      "regionPlaceholder": "us-east-1",
+      "accessKey": "Access Key",
+      "secretKey": "Secret Key",
+      "save": "Salvar configuração",
+      "saveSuccess": "Configuração salva com sucesso.",
+      "saveError": "Erro ao salvar configuração."
+    }
+  },
+  "common": {
+    "loading": "Carregando...",
+    "error": "Ocorreu um erro",
+    "save": "Salvar",
+    "cancel": "Cancelar"
+  }
+}

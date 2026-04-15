@@ -1,0 +1,23 @@
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.page-wrapper__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-wrapper__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.page-wrapper__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

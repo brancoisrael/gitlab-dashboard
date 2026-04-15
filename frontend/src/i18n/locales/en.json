@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "dependencies": "Dependencies",
+    "search": "Search",
+    "settings": "Settings"
+  },
+  "header": {
+    "title": "GitLab Dashboard"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "noData": "No data available. Run sync first.",
+    "sync": "Sync projects",
+    "syncAutoStarted": "Sync started. Data will load automatically when complete.",
+    "syncSuccess": "Sync completed successfully.",
+    "syncError": "Error during sync. Please try again.",
+    "gruposSection": "Groups",
+    "table": {
+      "nome": "Name",
+      "url": "URL",
+      "criadoEm": "Created",
+      "ultimaAtividade": "Last Activity",
+      "download": "Download XLSX",
+      "results": "{{total}} project(s)",
+      "filteredResults": "{{filtrado}} of {{total}} project(s)",
+      "filterNome": "Filter by name...",
+      "sheetName": "Projects"
+    }
+  },
+  "dependencies": {
+    "title": "Dependencies",
+    "syncSection": "Catalog dependencies",
+    "syncPlaceholder": "E.g.: pom.xml, package.json",
+    "syncButton": "Catalog",
+    "syncing": "Cataloging...",
+    "syncSuccess": "Cataloging of \"{{arquivo}}\" completed.",
+    "syncError": "Error cataloging \"{{arquivo}}\".",
+    "filtersSection": "Query dependencies",
+    "filterArquivo": "File",
+    "filterArquivoPlaceholder": "Select a file",
+    "filterTipo": "Type",
+    "filterTipoPlaceholder": "All",
+    "filterTipoProjeto": "Project",
+    "filterTipoDependencia": "Dependency",
+    "filterNome": "Name",
+    "filterNomePlaceholder": "Search by name...",
+    "filterPacote": "Package",
+    "filterPacotePlaceholder": "E.g.: com.example",
+    "queryButton": "Query",
+    "noResults": "No results found.",
+    "queryError": "Error querying dependencies.",
+    "table": {
+      "project": "Project",
+      "dependency": "Dependency",
+      "dependencies": "Dependencies",
+      "projects": "Projects",
+      "version": "Version",
+      "download": "Download XLSX",
+      "results": "{{grupos}} group(s) · {{itens}} item(s)",
+      "sheetName": "Dependencies"
+    },
+    "graph": {
+      "projects": "Projects",
+      "dependencies": "Dependencies"
+    }
+  },
+  "search": {
+    "title": "Content Search",
+    "searchSection": "Search parameters",
+    "extensao": "Extension",
+    "extensaoPlaceholder": "E.g.: .java, .ts, .py",
+    "texto": "Text to search",
+    "textoPlaceholder": "E.g.: HttpStatus.NOT_FOUND",
+    "searchButton": "Search",
+    "stopButton": "Stop",
+    "searching": "Searching...",
+    "cancelled": "Search cancelled.",
+    "searchSuccess": "Search completed — {{total}} project(s) with results.",
+    "searchError": "Error performing the search. Please try again.",
+    "fetchError": "Error fetching search results.",
+    "noResults": "No files found matching the given criteria.",
+    "resultsSection": "Results",
+    "table": {
+      "results": "{{projetos}} project(s) · {{arquivos}} file(s)",
+      "criteria": "Extension: {{extensao}} · Text: \"{{texto}}\"",
+      "projeto": "Project",
+      "arquivo": "File",
+      "url": "Link",
+      "openFile": "Open in GitLab",
+      "download": "Download XLSX",
+      "sheetName": "Search"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "storage": {
+      "title": "Storage",
+      "description": "Define where Parquet files will be persisted. Changes take effect immediately without restarting.",
+      "type": "Storage type",
+      "local": "Local directory",
+      "s3": "S3 / MinIO",
+      "localPath": "Directory path",
+      "localPathPlaceholder": "/data/parquet",
+      "endpoint": "Endpoint",
+      "endpointPlaceholder": "http://localhost:9000",
+      "bucket": "Bucket",
+      "bucketPlaceholder": "gitlab-dashboard",
+      "region": "Region",
+      "regionPlaceholder": "us-east-1",
+      "accessKey": "Access Key",
+      "secretKey": "Secret Key",
+      "save": "Save configuration",
+      "saveSuccess": "Configuration saved successfully.",
+      "saveError": "Error saving configuration."
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "save": "Save",
+    "cancel": "Cancel"
+  }
+}

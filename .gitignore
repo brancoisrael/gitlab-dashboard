@@ -1,0 +1,45 @@
+# ─── Claude Code ───────────────────────────────────────────────────────────────
+.claude/
+
+# ─── Outros assistentes de IA ──────────────────────────────────────────────────
+.cursorrules
+.windsurfrules
+.opencode.json
+AGENTS.md
+GEMINI.md
+
+# ─── MCP ───────────────────────────────────────────────────────────────────────
+.mcp.json
+
+# ─── IDEs e editores ───────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.ipr
+*.iml
+*.iws
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+*.swo
+.factorypath
+nb-configuration.xml
+
+# ─── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ─── Variáveis de ambiente ─────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local

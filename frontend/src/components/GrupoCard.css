@@ -1,0 +1,45 @@
+.grupo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 16px;
+  border: 2px solid;
+  border-radius: var(--border-radius-lg);
+  flex: 1 1 0;
+  min-width: 0;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  font-family: inherit;
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.grupo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.grupo-card--selected {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.grupo-card__title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.grupo-card__count {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}

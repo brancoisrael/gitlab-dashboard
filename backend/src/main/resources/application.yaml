@@ -1,0 +1,70 @@
+quarkus:
+  rest:
+    path: /api
+  swagger-ui:
+    always-include: true
+  smallrye-openapi:
+    info-title: GitLab Dashboard API
+    info-version: 1.0.0
+  rest-client:
+    gitlab-api:
+      # URL base derivada de gitlab.url
+      url: ${gitlab.url}
+      scope: jakarta.inject.Singleton
+
+# ---------------------------------------------------------------------------
+# Integração GitLab
+# As três propriedades obrigatórias abaixo são lidas exclusivamente de
+# variáveis de ambiente (ver backend/.env em desenvolvimento).
+# As demais têm defaults e raramente precisam ser alteradas.
+# ---------------------------------------------------------------------------
+gitlab:
+  url: ${GITLAB_URL}
+  token: ${GITLAB_TOKEN}
+  api:
+    projects-path: ${GITLAB_PROJECTS_PATH}
+    per-page-default: 50
+    pagination:
+      max-per-page: 100
+
+# ---------------------------------------------------------------------------
+# Persistência — Armazenamento de Parquet
+# storage.type: local | s3
+# ---------------------------------------------------------------------------
+storage:
+  type: local
+  local:
+    base-dir: /tmp/gitlab-dashboard/parquet
+  s3:
+    # Forneça credenciais via variáveis de ambiente (nunca commitar valores reais)
+    endpoint: ${S3_ENDPOINT:http://localhost:9000}
+    bucket: ${S3_BUCKET:gitlab-dashboard}
+    region: ${S3_REGION:us-east-1}
+    access-key: ${S3_ACCESS_KEY:minioadmin}
+    secret-key: ${S3_SECRET_KEY:minioadmin}
+    # path-style-access=true é obrigatório para MinIO
+    path-style-access: true
+
+# ---------------------------------------------------------------------------
+# Configurações em tempo de execução
+# Arquivo JSON onde as configurações de armazenamento alteradas via UI são persistidas.
+# Sobrescreve os valores de storage.* acima enquanto a JVM estiver rodando.
+# ---------------------------------------------------------------------------
+settings:
+  config-file: /tmp/gitlab-dashboard/settings.json
+
+# ---------------------------------------------------------------------------
+# Dependências — Processamento paralelo
+# Número máximo de virtual threads simultâneas ao buscar arquivos nos projetos GitLab
+# ---------------------------------------------------------------------------
+dependencies:
+  sync:
+    max-threads: 10
+
+# ---------------------------------------------------------------------------
+# Busca de Conteúdo — Processamento paralelo
+# Número máximo de virtual threads simultâneas ao buscar conteúdo nos projetos GitLab
+# ---------------------------------------------------------------------------
+content:
+  search:
+    max-threads: 10
