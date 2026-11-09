@@ -6,5 +6,6 @@ package br.com.ib.gitdashboards.dto;
  * @param nome   nome da dependência (quando {@code tipo="projeto"}) ou do projeto
  *               (quando {@code tipo="dependencia"})
  * @param versao versão da dependência declarada no projeto; {@code null} quando não informada
+ * @param url    URL do projeto no GitLab quando {@code nome} é um projeto; {@code null} caso contrário
  */
-public record DependenciaItemDTO(String nome, String versao) {}
+public record DependenciaItemDTO(String nome, String versao, String url) {}

@@ -14,15 +14,27 @@ interface Props {
 interface FlatRow {
   grupo: string
   item: string
+  url: string
   versao: string
 }
 
 function flatten(dados: DependenciaConsulta[]): FlatRow[] {
   return dados.flatMap((d) =>
     d.lista.length > 0
-      ? d.lista.map((it) => ({ grupo: d.nome, item: it.nome, versao: it.versao ?? '' }))
-      : [{ grupo: d.nome, item: '', versao: '' }],
+      ? d.lista.map((it) => ({
+          grupo: d.nome,
+          item: it.nome,
+          url: d.url ?? it.url ?? '',
+          versao: it.versao ?? '',
+        }))
+      : [{ grupo: d.nome, item: '', url: d.url ?? '', versao: '' }],
   )
+}
+
+function LinkProjeto({ url }: { readonly url: string | null }) {
+  return url
+    ? <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
+    : <span className="dep-tabela__td--empty">—</span>
 }
 
 export function DependenciaTabela({ dados, tipo, arquivo }: Props) {
@@ -32,19 +44,20 @@ export function DependenciaTabela({ dados, tipo, arquivo }: Props) {
   const colGrupo  = isProjeto ? t('dependencies.table.project')      : t('dependencies.table.dependency')
   const colItens  = isProjeto ? t('dependencies.table.dependencies')  : t('dependencies.table.projects')
   const colVersao = t('dependencies.table.version')
+  const colLink   = t('dependencies.table.link')
 
   const handleDownload = useCallback(() => {
-    const rows = flatten(dados).map((r) => ({
-      [colGrupo]:  r.grupo,
-      [colItens]:  r.item,
-      [colVersao]: r.versao,
-    }))
+    const rows = flatten(dados).map((r) => (
+      isProjeto
+        ? { [colGrupo]: r.grupo, [colLink]: r.url, [colItens]: r.item, [colVersao]: r.versao }
+        : { [colGrupo]: r.grupo, [colItens]: r.item, [colLink]: r.url, [colVersao]: r.versao }
+    ))
     const ws = XLSX.utils.json_to_sheet(rows)
-    ws['!cols'] = [{ wch: 42 }, { wch: 42 }, { wch: 18 }]
+    ws['!cols'] = [{ wch: 42 }, { wch: 42 }, { wch: 50 }, { wch: 18 }]
     const wb = XLSX.utils.book_new()
     XLSX.utils.book_append_sheet(wb, ws, t('dependencies.table.sheetName'))
     XLSX.writeFile(wb, `dependencias_${arquivo.replace('.', '_')}.xlsx`)
-  }, [dados, colGrupo, colItens, colVersao, arquivo, t])
+  }, [dados, isProjeto, colGrupo, colItens, colLink, colVersao, arquivo, t])
 
   const totalItens = dados.reduce((acc, d) => acc + Math.max(d.lista.length, 1), 0)
 
@@ -70,7 +83,9 @@ export function DependenciaTabela({ dados, tipo, arquivo }: Props) {
           <thead>
             <tr>
               <th className="dep-tabela__th">{colGrupo}</th>
+              {isProjeto && <th className="dep-tabela__th">{colLink}</th>}
               <th className="dep-tabela__th">{colItens}</th>
+              {!isProjeto && <th className="dep-tabela__th">{colLink}</th>}
               <th className="dep-tabela__th dep-tabela__th--versao">{colVersao}</th>
             </tr>
           </thead>
@@ -79,7 +94,9 @@ export function DependenciaTabela({ dados, tipo, arquivo }: Props) {
               item.lista.length === 0 ? (
                 <tr key={item.nome} className="dep-tabela__row">
                   <td className="dep-tabela__td dep-tabela__td--group">{item.nome}</td>
+                  {isProjeto && <td className="dep-tabela__td"><LinkProjeto url={item.url} /></td>}
                   <td className="dep-tabela__td dep-tabela__td--empty">—</td>
+                  {!isProjeto && <td className="dep-tabela__td dep-tabela__td--empty">—</td>}
                   <td className="dep-tabela__td dep-tabela__td--empty">—</td>
                 </tr>
               ) : (
@@ -96,7 +113,15 @@ export function DependenciaTabela({ dados, tipo, arquivo }: Props) {
                         {item.nome}
                       </td>
                     )}
+                    {isProjeto && idx === 0 && (
+                      <td className="dep-tabela__td" rowSpan={item.lista.length}>
+                        <LinkProjeto url={item.url} />
+                      </td>
+                    )}
                     <td className="dep-tabela__td">{it.nome}</td>
+                    {!isProjeto && (
+                      <td className="dep-tabela__td"><LinkProjeto url={it.url} /></td>
+                    )}
                     <td className="dep-tabela__td dep-tabela__td--versao">
                       {it.versao ?? <span className="dep-tabela__td--empty">—</span>}
                     </td>

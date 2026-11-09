@@ -20,6 +20,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Lê o arquivo Parquet de projetos e produz agrupamentos analíticos.
@@ -172,6 +173,7 @@ public class ParquetQueryService {
         boolean porDependencia = tipo == TipoConsulta.DEPENDENCIA;
         var pacoteLower = pacote != null ? pacote.toLowerCase() : null;
         var grupos = new LinkedHashMap<String, List<DependenciaItemDTO>>();
+        var urlsProjetos = urlsPorNomeProjeto();
 
         try (var reader = AvroParquetReader.<GenericRecord>builder(new LocalInputFile(path))
                 .withDataModel(GenericData.get())
@@ -190,15 +192,25 @@ public class ParquetQueryService {
                     && (nome == null || chave.equals(nome))
                     && (pacoteLower == null || (pacoteVal != null && pacoteVal.toLowerCase().contains(pacoteLower)))) {
                     grupos.computeIfAbsent(chave, chaveNova -> new ArrayList<>())
-                          .add(new DependenciaItemDTO(valor, versao));
+                          .add(new DependenciaItemDTO(valor, versao, porDependencia ? urlsProjetos.get(valor) : null));
                 }
             }
         }
 
         var tipoStr = porDependencia ? "dependencia" : "projeto";
         return grupos.entrySet().stream()
-            .map(e -> new DependenciaConsultaDTO(tipoStr, e.getKey(), e.getValue()))
+            .map(e -> new DependenciaConsultaDTO(
+                tipoStr, e.getKey(), porDependencia ? null : urlsProjetos.get(e.getKey()), e.getValue()))
             .toList();
+    }
+
+    /** Mapa nome do projeto → URL no GitLab; em caso de nomes repetidos prevalece o primeiro. */
+    private Map<String, String> urlsPorNomeProjeto() throws IOException {
+        var urls = new HashMap<String, String>();
+        for (var projeto : listarTodos()) {
+            if (projeto.webUrl() != null) urls.putIfAbsent(projeto.name(), projeto.webUrl());
+        }
+        return urls;
     }
 
     private String valorCampo(GenericRecord record, String campo) {

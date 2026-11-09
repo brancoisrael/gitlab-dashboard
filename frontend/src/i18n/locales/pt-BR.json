@@ -55,6 +55,7 @@
       "dependency": "Dependência",
       "dependencies": "Dependências",
       "projects": "Projetos",
+      "link": "Link do projeto",
       "version": "Versão",
       "download": "Baixar XLSX",
       "results": "{{grupos}} grupo(s) · {{itens}} item(ns)",
